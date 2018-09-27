@@ -1,23 +1,35 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
+import ChatWindow from './ChatWindow';
 
-const users = [{ username: 'Rubeun' }, { username: 'Vero' }];
-
-const messages = [
-  { username: 'Rubeun', text: 'Hi, Vero!' },
-  { username: 'Rubeun', text: 'How are you?' },
-  { username: 'Vero', text: 'Hi, Rubeun! Good, you?' },
-];
 
 class App extends Component {
+
+  state = {
+    users: [{username: "Rubeun"}, {username: "Vero"}],
+    messages: [
+      { username: 'Rubeun', text: 'Hi, Vero!' },
+      { username: 'Rubeun', text: 'How are you?' },
+      { username: 'Vero', text: 'Hi, Rubeun! Good, you?' }
+    ]
+  }
 
   // do not allow submit if there is no user input
   isDisabled = () => {
     return false;
   };
 
+  addMessage = (username, message) => {
+    let newUserMessage = { username: username, text: message };
+    this.setState(oldMessages => ({
+      messages: oldMessages.messages.concat([newUserMessage])
+    }));
+    console.log(this.state);
+  }
+
   render() {
+    //console.log("Messages ", this.state.messages);
     return (
       <div className="App">
         <header className="App-header">
@@ -25,62 +37,18 @@ class App extends Component {
           <h1 className="App-title">Chat Windows Exercise</h1>
         </header>
         <div className="container">
-          <div className="chat-window">
-            <h2>PandaKitty Chat</h2>
-            <div className="name sender">{users[0].username}</div>
-
-            <ul className="message-list">
-              {messages.map((message, index) => (
-                <li
-                  key={index}
-                  className={
-                    message.username === users[0].username ? 'message sender' : 'message recipient'
-                  }
-                >
-                  <p>{`${message.username}: ${message.text}`}</p>
-                </li>
-              ))}
-            </ul>
-
-            <div>
-              <form className="input-group">
-                <input type="text" className="form-control" placeholder="Enter your message..." />
-                <div className="input-group-append">
-                  <button className="btn submit-button" disabled={this.isDisabled()}>
-                    SEND
-                  </button>
-                </div>
-              </form>
-            </div>
-          </div>
-
-          <div className="chat-window">
-            <h2>PandaKitty Chat</h2>
-            <div className="name sender">{users[1].username}</div>
-            <ul className="message-list">
-              {messages.map((message, index) => (
-                <li
-                  key={index}
-                  className={
-                    message.username === users[1].username ? 'message sender' : 'message recipient'
-                  }
-                >
-                  <p>{`${message.username}: ${message.text}`}</p>
-                </li>
-              ))}
-            </ul>
-
-            <div>
-              <form className="input-group">
-                <input type="text" className="form-control" placeholder="Enter your message..." />
-                <div className="input-group-append">
-                  <button className="btn submit-button" disabled={this.isDisabled()}>
-                    SEND
-                  </button>
-                </div>
-              </form>
-            </div>
-          </div>
+          <ChatWindow 
+            username={this.state.users[0].username} 
+            messages={this.state.messages} 
+            isDisabled={this.isDisabled}
+            addMessage={this.addMessage} 
+          />
+          <ChatWindow 
+            username={this.state.users[1].username} 
+            messages={this.state.messages} 
+            isDisabled={this.isDisabled}
+            addMessage={this.addMessage} 
+          />
         </div>
       </div>
     );
