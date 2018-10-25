@@ -5,7 +5,7 @@ let users = {
     avatarURL: "https://tylermcginnis.com/would-you-rather/sarah.jpg",
     tweets: ['8xf0y6ziyjabvozdd253nd', 'hbsc73kzqi75rg7v1e0i6a', '2mb6re13q842wu8n106bhk', '6h5ims9iks66d4m7kqizmv', '3sklxkf9yyfowrf0o1ftbb'],
   },
-  tylermcginnis: {
+  rubeun_tan: {
     id: "rubeun_tan",
     name: "Rubeun Tan",
     avatarURL: "https://s3-us-west-2.amazonaws.com/s.cdpn.io/1432311/profile/profile-512.jpg",

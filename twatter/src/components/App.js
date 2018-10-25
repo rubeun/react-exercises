@@ -13,11 +13,22 @@ class App extends Component {
   render() {
     return (
       <div>
-        <Dashboard />
+        {this.props.loading === true
+          ? null
+          : <Dashboard />
+        }
       </div>
     )
   }
 }
 
+// App should only show Dashboard when handleInitialData is complete.
+// So set loading to check if authedUser is set. When set, all data is available 
+function mapStateToProps({authedUser}) {
+  return {
+    loading: authedUser === null
+  }
+}
+
 // connect upgrades App component to an App container that can get state from store & dispatch action
-export default connect()(App);
+export default connect(mapStateToProps)(App);
