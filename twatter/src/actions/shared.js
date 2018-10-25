@@ -9,7 +9,7 @@ const AUTHED_ID = 'rubeun_tan'
 
 // ### ACTION CREATORS ###
 
-// @ REDUX THUNK needed to allow returning of a function @
+// @ REDUX THUNK needed to allow returning of a function (middleware) @
 // make API call to get initial data using promise to async dispatch users and tweets when data is received
 export function handleInitialData () {
   return (dispatch) => {

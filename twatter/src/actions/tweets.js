@@ -1,9 +1,38 @@
-import { saveLikeToggle } from '../utils/api';
+import { saveLikeToggle, saveTweet } from '../utils/api';
+import { showLoading, hideLoading } from 'react-redux-loading';
 
 export const RECEIVE_TWEETS = 'RECEIVE_TWEETS';
 export const TOGGLE_TWEET = 'TOGGLE_TWEET';
+export const ADD_TWEET = 'ADD_TWEET';
+
 // ### ACTION CREATORS ###
 //
+
+function addTweet(tweet) {
+  return {
+    type: ADD_TWEET,
+    tweet
+  }
+}
+
+// Async API call to saveTweet using thunk middleware
+export function handleAddTweet(text, replyingTo) {
+  return (dispatch, getState) => {
+    const { authedUser } = getState();
+
+    dispatch(showLoading());
+
+    return saveTweet({
+      text,
+      author: authedUser,
+      replyingTo
+    })
+      .then((tweet) => dispatch(addTweet(tweet)))
+      .then(() => dispatch(hideLoading()))
+  }
+}
+
+// Async API call to receiveTweets
 export function receiveTweets(tweets) {
   return {
     type: RECEIVE_TWEETS,
@@ -20,7 +49,7 @@ function  toggleTweet({id, authedUser, hasLiked}) {
   }
 }
 
-// Need an async API call, so use thunk (returns function)
+// Need an async API call to saveLikeToggle, so use thunk middleware (returns function)
 export function handleToggleTweet(info) {
   return (dispatch) => {
     // toggle on click in UI. If saveLikeToggle fails, retoggle back to initial
