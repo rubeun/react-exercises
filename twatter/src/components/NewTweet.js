@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { handleAddTweet } from '../actions/tweets';
+import { Redirect } from 'react-router-dom';
 
 class NewTweet extends Component {
   // local state for text entry (no need for store)
   state = {
-    text: ''
+    text: '',
+    toHome: false
   }
 
   // handle state change when user types in textbox
@@ -27,14 +29,17 @@ class NewTweet extends Component {
     dispatch(handleAddTweet(text, id));
     
     this.setState(() => ({
-      text: ''
+      text: '',
+      toHome: id ? false : true  // only go to home if no id (new tweet page), else stay
     }))
   }
 
   render() {
-    const { text } = this.state;
+    const { text, toHome } = this.state;
     
-    {/* todo: Redirect to / if submitted */}
+    if (toHome === true) {
+      return <Redirect to='/' />
+    }
 
     // remaining characters in users tweet.
     const tweetLeft = 280 - text.length;
