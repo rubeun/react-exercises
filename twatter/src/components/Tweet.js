@@ -34,9 +34,8 @@ class Tweet extends Component {
     if (tweet === null) {
       return <p>This Tweet doesn't exist</p>
     }
-
     const {
-      name, avatar, timestamp, text, hasLiked, likes, replies, id, parent
+      name, avatar, timestamp, text, hasLiked, likes, replies, parent
     } = tweet;
 
     return (
