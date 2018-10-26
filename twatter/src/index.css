@@ -47,6 +47,11 @@ a {
   font-weight: bold;
 }
 
+.twatter-logo {
+  float: left;
+  margin-right: 30px;
+}
+
 .nav ul {
   display: flex;
   flex-direction: row;
