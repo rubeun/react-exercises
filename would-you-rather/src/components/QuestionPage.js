@@ -1,9 +1,17 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Redirect } from 'react-router-dom';
 import { FiCheckCircle } from 'react-icons/fi';
 import { calculatePercentage } from '../utils/helpers';
+import { saveQuestionAnswer } from '../utils/api';
+import { handleSaveAnswer } from '../actions/questions';
 
 class QuestionPage extends Component {
+  // local state
+  state={
+    answer: '',
+    toHome: false
+  }
 
   // checks if user has already voted on this question
   hasVoted = () => {
@@ -17,13 +25,28 @@ class QuestionPage extends Component {
     }
   }
 
+  // checks which answer was selected and calls saveQuestionAnswer
   handleSubmit = (e) => {
     e.preventDefault();
-    // todo: handle answer
+    const { dispatch, id } = this.props;
+
+    const answer = document.querySelector('input[name="question"]:checked').value;
+
+    dispatch(handleSaveAnswer(id, answer));
+
+    this.setState(() => ({
+      answer: '',
+      toHome: true  // go home after question added
+    }))
   }
 
   render() {
     const { id, question } = this.props;
+    const { toHome } = this.state;
+
+    if (toHome === true) {
+      return <Redirect to='/' />
+    }
 
     if (this.hasVoted() !== false) {
       // Already answered. Show selection you made
@@ -40,12 +63,12 @@ class QuestionPage extends Component {
         </div>
       )
     } else {
-      // Not answered. Show form to select answer.
+      // Not answered. Show form to select answer. Calls handleSubmit when done.
       return (
         <div className='center'>
           <h3 className='center'>Would You Rather</h3>
 
-          <form className='answer-question'>
+          <form className='answer-question' onSubmit={this.handleSubmit}>
             <p>{question.optionOne.text} <input type='radio' name='question' value='optionOne' required /></p>
             <p>or</p>
             <p>{question.optionTwo.text} <input type='radio' name='question' value='optionTwo' required /></p>
