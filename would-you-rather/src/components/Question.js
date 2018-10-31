@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { Link, withRouter } from 'react-router-dom';
 
 class Question extends Component {
-
+  
   render() {
     const { question } = this.props;
     
@@ -29,7 +29,6 @@ class Question extends Component {
 }
 
 // Question needs authedUser, users, questions from store. Question is also passed in id as prop (of Question to be displayed)
-// note: formatQuestion(question, author, authedUser, parentQuestion) and returns formatted question in an object
 function mapStateToProps({authedUser, questions}, { id }) {
   const question = questions[id];
 
@@ -41,5 +40,5 @@ function mapStateToProps({authedUser, questions}, { id }) {
   }
 }
 
-// withRouter passes connected component all router props (e.g. this.route.history.push)
+// withRouter passes connected component all router props
 export default withRouter(connect(mapStateToProps)(Question));

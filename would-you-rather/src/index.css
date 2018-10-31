@@ -88,3 +88,8 @@ li {
 .new-question {
 
 }
+
+.answer-question {
+  border: 1px solid #252525;
+  padding-left: 20px;
+}
