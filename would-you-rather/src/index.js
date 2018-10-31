@@ -10,8 +10,6 @@ import middleware from './middleware';
 // init store and pass in all reducers (i.e. combineReducers which calls all reducers) & middlewares (i.e. applyMiddleware)
 const store = createStore(reducer, middleware);
 
-
-
 // Render React with Redux's provider wrapper to provide access to store
 ReactDOM.render(
   <Provider store={store}>

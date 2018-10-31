@@ -21,11 +21,17 @@ a {
   margin: 35px auto;
   padding: 10px;
   border: 1px solid rgba(0,0,0,.29);
+  border-radius: 10px;
   cursor: pointer;
   background: #fff;
   font-size: 16px;
   width: 250px;
   position: relative;
+}
+
+.btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
 }
 
 .btn:hover {
@@ -47,6 +53,17 @@ a {
   font-weight: bold;
 }
 
+.nav ul {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  text-decoration: none;
+}
+
+.nav li:first-child {
+  padding-left: 0;
+}
+
 ul {
   padding-left: 0;
 }
@@ -61,4 +78,13 @@ li {
   height: 50px;
   border-radius: 25px;
   margin: 10px;
+}
+
+.question-info {
+  border: 1px solid #252525;
+  padding-left: 20px;
+}
+
+.new-question {
+
 }
