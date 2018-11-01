@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { handleInitialData } from '../actions/shared';
 import LoadingBar from 'react-redux-loading';
+import Login from './Login';
 import Nav from './Nav';
 import Dashboard from './Dashboard';
 import QuestionPage from './QuestionPage';
@@ -14,7 +15,7 @@ import Leaderboard from './Leaderboard';
 class App extends Component {
 
   componentDidMount() {
-
+    // load all data from _DATA.js
     this.props.dispatch(handleInitialData());
   }
 
@@ -27,12 +28,14 @@ class App extends Component {
             <Nav />
             {this.props.loading === true
                 ? null
-                : <div>
-                  <Route path='/' exact component={Dashboard} />
-                  <Route path='/questions/:id' component={QuestionPage} />
-                  <Route path='/add' component={NewQuestion} />
-                  <Route path='/leaderboard' component={Leaderboard} />
-                </div>
+                : this.props.authedUser !== null   
+                  ?  <div>
+                    <Route path='/questions/:id' component={QuestionPage} />
+                    <Route path='/' exact component={Dashboard} />
+                    <Route path='/add' component={NewQuestion} />
+                    <Route path='/leaderboard' component={Leaderboard} />
+                  </div>
+                  : <Login path='/login' component={Login} />  
               }
           </div>
         </Fragment>
@@ -42,10 +45,11 @@ class App extends Component {
 }
 
 // App should only show Dashboard when handleInitialData is complete.
-// So set loading to check if authedUser is set. When set, all data is available 
-function mapStateToProps({authedUser}) {
+// So set loading to check if questions & users is set. When set, all data is available 
+function mapStateToProps({authedUser, questions, users}) {
   return {
-    loading: authedUser === null
+    authedUser,
+    loading: questions === null || users === null
   }
 }
 

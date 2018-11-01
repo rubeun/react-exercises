@@ -51,6 +51,7 @@ a {
 
 .active {
   font-weight: bold;
+  text-decoration: underline;
 }
 
 .nav ul {
@@ -74,6 +75,21 @@ li {
   text-decoration: none;
 }
 
+.text-link {
+  color: rgb(77, 77, 223);
+  text-decoration: underline;
+}
+
+.unanswered-question {
+  background-color: #ccf;
+  text-align: center;
+}
+
+.answered-question {
+  background-color: #cfc;
+  text-align: center;
+}
+
 .avatar {
   height: 50px;
   border-radius: 25px;
@@ -83,6 +99,10 @@ li {
 .question-info {
   border: 1px solid #252525;
   padding-left: 20px;
+}
+
+.author-time-date {
+  font-size: 11px;
 }
 
 .new-question {

@@ -1,26 +1,31 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link, withRouter } from 'react-router-dom';
+import { FiCheckCircle } from 'react-icons/fi';
+import { formatDate } from '../utils/helpers';
 
 class Question extends Component {
-  
+
   render() {
-    const { question } = this.props;
+    const { authedUser, question } = this.props;
     
     if (question === null) {
       return <p>This Question doesn't exist</p>
     }
     const {
-      optionOne, optionTwo, id
+      optionOne, optionTwo, id, timestamp, author
     } = question;
+
+    const timeDate = formatDate(timestamp); 
 
     return (
       <Link to={`/questions/${id}`} className='question'>
         <div className='question-info'>
           <div>
-            <p>{optionOne.text}</p>
+            <p>{optionOne.text} {optionOne.votes.includes(authedUser) && <FiCheckCircle color='green' />}</p>
             <p>or</p>
-            <p>{optionTwo.text}</p>
+            <p>{optionTwo.text} {optionTwo.votes.includes(authedUser) && <FiCheckCircle color='green' />}</p>
+            <p className='author-time-date'>Created by {author} on {timeDate}</p>
           </div>
         </div>
       </Link>

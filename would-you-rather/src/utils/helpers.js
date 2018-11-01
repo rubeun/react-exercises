@@ -1,5 +1,9 @@
-import React from 'react';
+export function formatDate (timestamp) {
+  const d = new Date(timestamp)
+  const time = d.toLocaleTimeString('en-US')
+  return time.substr(0, 5) + time.slice(-2) + ' | ' + d.toLocaleDateString()
+}
 
-export default function calculatePercentage(num, total) {
+export function calculatePercentage(num, total) {
   return (num / total) * 100;
 }

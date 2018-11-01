@@ -6,7 +6,9 @@ import { showLoading, hideLoading } from 'react-redux-loading';
 
 // !!! TODO !!! no login/authentication system yet, so set a default authedUser 
 // todo - set user id based on user selection
-const AUTHED_ID = 'rubeun'
+const AUTHED_ID = 'rubeun';
+//const AUTHED_ID = null;
+
 
 // ### ACTION CREATORS ###
 

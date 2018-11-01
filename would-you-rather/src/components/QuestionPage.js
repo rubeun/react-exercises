@@ -1,16 +1,14 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Redirect } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { FiCheckCircle } from 'react-icons/fi';
 import { calculatePercentage } from '../utils/helpers';
-import { saveQuestionAnswer } from '../utils/api';
 import { handleSaveAnswer } from '../actions/questions';
 
 class QuestionPage extends Component {
   // local state
   state={
-    answer: '',
-    toHome: false
+    answer: ''
   }
 
   // checks if user has already voted on this question
@@ -35,31 +33,28 @@ class QuestionPage extends Component {
     dispatch(handleSaveAnswer(id, answer));
 
     this.setState(() => ({
-      answer: '',
-      toHome: true  // go home after question added
+      answer: ''
     }))
   }
 
+  // TODO: Redirect to Home if Question does not exist
+
   render() {
     const { id, question } = this.props;
-    const { toHome } = this.state;
-
-    if (toHome === true) {
-      return <Redirect to='/' />
-    }
 
     if (this.hasVoted() !== false) {
       // Already answered. Show selection you made
       return (
         <div className='center'>
           <h3 className='center'>Would You Rather</h3>
-          
-          <p>{question.optionOne.text} {this.hasVoted() === 'optionOne' ? <FiCheckCircle  color='green' /> : '' }</p>
-          <p>or</p>
-          <p>{question.optionTwo.text} {this.hasVoted() === 'optionTwo' ? <FiCheckCircle  color='green' /> : '' }</p>
-          <br />
-          <em>*You have answered this question*</em>
-
+          <div className='answered-question'>          
+            <p>{question.optionOne.text} {this.hasVoted() === 'optionOne' ? <FiCheckCircle  color='green' /> : '' }</p>
+            <p>or</p>
+            <p>{question.optionTwo.text} {this.hasVoted() === 'optionTwo' ? <FiCheckCircle  color='green' /> : '' }</p>
+            <br />
+            <em>*You have already answered this question*</em>
+            <p>Return <Link to='/' className='text-link'>Home</Link></p>
+          </div>
         </div>
       )
     } else {
