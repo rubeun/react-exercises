@@ -40,12 +40,12 @@ class QuestionPage extends Component {
   // TODO: Redirect to Home if Question does not exist
 
   render() {
-    const { id, question } = this.props;
+    const { question } = this.props;
 
     if (this.hasVoted() !== false) {
       // Already answered. Show selection you made
       return (
-        <div className='center'>
+        <div>
           <h3 className='center'>Would You Rather</h3>
           <div className='answered-question'>          
             <p>{question.optionOne.text} {this.hasVoted() === 'optionOne' ? <FiCheckCircle  color='green' /> : '' }</p>
@@ -60,10 +60,10 @@ class QuestionPage extends Component {
     } else {
       // Not answered. Show form to select answer. Calls handleSubmit when done.
       return (
-        <div className='center'>
+        <div>
           <h3 className='center'>Would You Rather</h3>
 
-          <form className='answer-question' onSubmit={this.handleSubmit}>
+          <form className='unanswered-question' onSubmit={this.handleSubmit}>
             <p>{question.optionOne.text} <input type='radio' name='question' value='optionOne' required /></p>
             <p>or</p>
             <p>{question.optionTwo.text} <input type='radio' name='question' value='optionTwo' required /></p>

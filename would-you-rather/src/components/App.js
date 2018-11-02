@@ -5,6 +5,7 @@ import { handleInitialData } from '../actions/shared';
 import LoadingBar from 'react-redux-loading';
 import Login from './Login';
 import Nav from './Nav';
+import Users from './Users';
 import Dashboard from './Dashboard';
 import QuestionPage from './QuestionPage';
 import NewQuestion from './NewQuestion';
@@ -25,7 +26,8 @@ class App extends Component {
         <Fragment>
           <LoadingBar />
           <div className='container'>
-            <Nav />
+            <Nav /><Users />
+            <h1 className='center clear'>Would You Rather?</h1>
             {this.props.loading === true
                 ? null
                 : this.props.authedUser !== null   

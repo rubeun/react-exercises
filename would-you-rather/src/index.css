@@ -55,14 +55,44 @@ a {
 }
 
 .nav ul {
+  width: 65%;
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
   text-decoration: none;
+  float: left;
 }
 
 .nav li:first-child {
   padding-left: 0;
+}
+
+.current-user {
+  width: 30%;
+  padding: 0;
+  float: right;
+  text-align: right;
+}
+
+.user-logged-out {
+  float: right;
+  text-align: right;
+  padding-right: 30px;
+  padding-top: 12px;
+}
+
+.current-username {
+  float: left;
+  text-align: right;
+  padding-right: 10px;
+  padding-top: 12px;
+}
+
+.log-out {
+  float: left;
+  text-align: right;
+  cursor: pointer;
+  padding-top: 12px;
 }
 
 ul {
@@ -80,14 +110,51 @@ li {
   text-decoration: underline;
 }
 
-.unanswered-question {
-  background-color: #ccf;
+.login-user {
+  width: 50%;
+  margin: 0 auto;
+}
+
+.user-list li {
+  cursor: pointer;
+}
+
+.user-avatar {
+  height: 50px;
+  width: 20%;
+  padding: 10px 0 10px 0;
+  float: left;
+  border: 1px solid #000;
+  background-color: #888;
+}
+
+.user-avatar img {
+  margin: 0 0 0 18px;
+}
+
+.user-details {
+  width: 74%;
+  height: 50px;
+  padding: 10px 0 10px 20px;
+  float: left;
+  border: 1px solid #000;
   text-align: center;
 }
 
+.unanswered-question {
+  border: 1px solid #252525;
+  background-color: #ccf;
+  text-align: center;
+  width: 70%;
+  margin: 0 auto;
+}
+
 .answered-question {
+  border: 1px solid #252525;
   background-color: #cfc;
   text-align: center;
+  width: 70%;
+  margin: 0 auto;
 }
 
 .avatar {
@@ -96,20 +163,10 @@ li {
   margin: 10px;
 }
 
-.question-info {
-  border: 1px solid #252525;
-  padding-left: 20px;
-}
-
 .author-time-date {
   font-size: 11px;
 }
 
-.new-question {
-
-}
-
-.answer-question {
-  border: 1px solid #252525;
-  padding-left: 20px;
+.clear {
+  clear: both;
 }

@@ -1,24 +1,38 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { loginUser } from '../actions/shared';
 
 class Login extends Component {
   state ={
     usernames: ''
   }
 
+  handleUser = (username) => {
+    const selectedUser = username;
 
-  getUsernames = (users) => {
+    this.props.dispatch(loginUser(selectedUser));
+    
   }
 
-
   render() {
-    const { users } = this.props;
-    console.log(users);
-    //this.getUsernames(users);
+    const { usernames, users } = this.props;
+
     return (
-      <div>
-        <h3>Choose User</h3>
-        <ul>
+      <div className='login-user'>
+        <h3 className='center'>Choose User</h3>
+        <ul className='user-list'>
+          {usernames.map((username) => 
+            (
+              <li key={username} onClick={() => this.handleUser(username)}>
+                <div className='user-avatar'>
+                  <img className='avatar' src={users[username].avatarURL} />
+                </div>
+                <div className='user-details'>
+                  <p>{username}</p>
+                </div>         
+              </li>
+            )
+          )}
 
         </ul>
       </div>
@@ -29,7 +43,8 @@ class Login extends Component {
 function mapStateToProps({authedUser, users}) {
   return {
     authedUser,
-    users
+    users,
+    usernames: Object.keys(users)
   }
 }
 

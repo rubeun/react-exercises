@@ -4,11 +4,20 @@ import { receiveQuestions } from '../actions/questions';
 import { setAuthedUser } from '../actions/authedUser';
 import { showLoading, hideLoading } from 'react-redux-loading';
 
-// !!! TODO !!! no login/authentication system yet, so set a default authedUser 
-// todo - set user id based on user selection
-const AUTHED_ID = 'rubeun';
-//const AUTHED_ID = null;
+// function to set authedUser to username
+export function loginUser(username) {
+  console.log("loginUser:", username);
+  return (dispatch) => {
+    return dispatch(setAuthedUser(username));
+  }
+}
 
+// function to set authedUser to null
+export function logoutUser() {
+  return (dispatch) => {
+    return dispatch(setAuthedUser(null));
+  }
+}
 
 // ### ACTION CREATORS ###
 
@@ -22,7 +31,6 @@ export function handleInitialData () {
       .then(({users, questions }) => {
         dispatch(receiveUsers(users));
         dispatch(receiveQuestions(questions));
-        dispatch(setAuthedUser(AUTHED_ID));
         dispatch(hideLoading());
       })
   }

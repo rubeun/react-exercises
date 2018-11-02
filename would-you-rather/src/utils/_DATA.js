@@ -14,7 +14,7 @@ let users = {
   doctor: {
     id: 'doctor',
     name: 'The Doctor',
-    avatarURL: "https://i.kinja-img.com/gawker-media/image/upload/pr4yhdthhvp6vic1gsok.jpg",
+    avatarURL: "https://s3.r29static.com//bin/entry/3d2/720x864,80/2041483/image.jpg",
     answers: {
       "vthrdm985a262al8qx3do": 'optionOne',
       "xj352vofupe1dqz9emx13r": 'optionTwo',
