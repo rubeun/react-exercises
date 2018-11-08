@@ -3,27 +3,37 @@ import { connect } from 'react-redux';
 import Question from './Question';
 
 class Dashboard extends Component {
+
+  // checks if authedUser has answered question with id
+  hasAnsweredQuestion = (id) => {
+    const { authedUser, questions } = this.props;
+    if (questions[id].optionOne.votes.includes(authedUser) ||
+    questions[id].optionTwo.votes.includes(authedUser)) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
   render() {
     const { authedUser, questions, questionsId } = this.props;
     return (
       <div>
         <h3 className='center'>Your Would You Rather Questions</h3>
         <ul className='dashboard-list'>
-          <p className='center'>Unanswered Questions:</p>
+          <p className='title-unanswered'>Unanswered Questions:</p>
           {questionsId.map((id) => (
-            !questions[id].optionOne.votes.includes(authedUser) &&
-            !questions[id].optionTwo.votes.includes(authedUser) &&
+            !this.hasAnsweredQuestion(id) &&
               (<li key={id} className='unanswered-question'>
                 <Question id={id} />
               </li>)            
               )  
           )}
 
-          <p className='center'>Answered Questions:</p>
+          <p className='title-answered'>Answered Questions:</p>
           {questionsId.map((id) => (
-            questions[id].optionOne.votes.includes(authedUser) ||
-            questions[id].optionTwo.votes.includes(authedUser) &&
-              (<li key={id} className='answered-question'>
+            this.hasAnsweredQuestion(id) &&
+            (<li key={id} className='answered-question'>
                 <Question id={id} />
               </li>)            
               )  

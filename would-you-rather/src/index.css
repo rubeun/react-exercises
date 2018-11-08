@@ -141,6 +141,16 @@ li {
   text-align: center;
 }
 
+.title-unanswered {
+  text-align: center;
+  text-decoration: underline;
+}
+
+.title-answered {
+  text-align: center;
+  text-decoration: underline;
+}
+
 .unanswered-question {
   border: 1px solid #252525;
   background-color: #ccf;
