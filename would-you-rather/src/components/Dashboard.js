@@ -16,7 +16,7 @@ class Dashboard extends Component {
   }
 
   render() {
-    const { authedUser, questions, questionsId } = this.props;
+    const { questionsId } = this.props;
     return (
       <div>
         <h3 className='center'>Your Would You Rather Questions</h3>

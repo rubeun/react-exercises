@@ -25,7 +25,7 @@ class Login extends Component {
             (
               <li key={username} onClick={() => this.handleUser(username)}>
                 <div className='user-avatar'>
-                  <img className='avatar' src={users[username].avatarURL} />
+                  <img className='avatar' src={users[username].avatarURL} alt={username} />
                 </div>
                 <div className='user-details'>
                   <p>{username}</p>

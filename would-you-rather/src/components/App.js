@@ -26,7 +26,8 @@ class App extends Component {
         <Fragment>
           <LoadingBar />
           <div className='container'>
-            <Nav /><Users />
+            {this.props.authedUser !== null ? <Nav /> : null}
+            <Users />
             <h1 className='center clear'>Would You Rather?</h1>
             {this.props.loading === true
                 ? null
