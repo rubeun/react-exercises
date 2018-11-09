@@ -27,7 +27,7 @@ class NewQuestion extends Component {
     }))
   }
 
-  // handle adding new tweet on submit, then clear text box.
+  // handle adding new question on submit, then clear text box.
   handleSubmit = (e) => {
     e.preventDefault();
 
