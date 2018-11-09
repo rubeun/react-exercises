@@ -7,7 +7,7 @@ class Users extends Component {
   handleLogout = () => {
     this.props.dispatch(logoutUser());
   }
-
+  
   render() {
     const { authedUser, users } = this.props;
 
@@ -22,7 +22,7 @@ class Users extends Component {
     } else {
       return (
         <div className='current-user'>
-          <p className='user-logged-out'>Not Logged In</p>
+          <p className='user-logged-out blink'>Not Logged In</p>
         </div>
       )
     }

@@ -2,9 +2,23 @@
 
 Voting App that queries user "Would you rather...question 1...or...question 2" 
 
-The `_DATA.js` file represents a fake database and methods that let you access the data. The only thing you need to edit in the ` _DATA.js` file is the value of `avatarURL`. Each user should have an avatar, so you’ll need to add the path to each user’s avatar.
+User can choose between 3 pre-created users: Rubeun(me), Doctor (Who?), and Snape (Half-Blood Prince).
+Once user is selected, that user is logged in and the dashboard will load.
+The Dashboard shows selected users Unanswered Questions and Answered Questions listed in order of newest first. 
+Clicking on any question will take you to its question page. Answered Questions cannot be altered but Unanswered Questions can be answered by selecting option and pressing submit.
+Users can also Add a New Question by clicking Add New Question in the navigation
+Leaderboard accessible by the navigation brings the user to the Leaderboard Questions page which lists users with the highest total questions asked and answered.
+
+## Installation
+
+* Download all files
+* Go into directory
+* Run by 'install npm'
+* Launch by 'npm start'
 
 ## Data
+
+The `_DATA.js` file represents a fake database and methods that let you access the data. 
 
 There are two types of objects stored in our database:
 
