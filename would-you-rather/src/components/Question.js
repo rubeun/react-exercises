@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link, withRouter } from 'react-router-dom';
-import { FiCheckCircle } from 'react-icons/fi';
+import { TiTick } from 'react-icons/ti';
 import { formatDate } from '../utils/helpers';
 
 class Question extends Component {
@@ -22,9 +22,9 @@ class Question extends Component {
       <Link to={`/questions/${id}`} className='question'>
         <div className='question-info'>
           <div>
-            <p>{optionOne.text} {optionOne.votes.includes(authedUser) && <FiCheckCircle color='green' />}</p>
+            <p>{optionOne.text} {optionOne.votes.includes(authedUser) && <TiTick size='1.5em' color='green' />}</p>
             <p>or</p>
-            <p>{optionTwo.text} {optionTwo.votes.includes(authedUser) && <FiCheckCircle color='green' />}</p>
+            <p>{optionTwo.text} {optionTwo.votes.includes(authedUser) && <TiTick size='1.5em' color='green' />}</p>
             <p className='author-time-date'>Created by {author} on {timeDate}</p>
           </div>
         </div>

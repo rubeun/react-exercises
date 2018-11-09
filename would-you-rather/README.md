@@ -13,7 +13,7 @@ Leaderboard accessible by the navigation brings the user to the Leaderboard Ques
 
 * Download all files
 * Go into directory
-* Run by 'install npm'
+* Install by 'npm install'
 * Launch by 'npm start'
 
 ## Data

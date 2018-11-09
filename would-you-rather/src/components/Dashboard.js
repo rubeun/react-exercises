@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import Question from './Question';
+import "react-tabs/style/react-tabs.css";
 
 class Dashboard extends Component {
 
@@ -20,26 +22,36 @@ class Dashboard extends Component {
     return (
       <div>
         <h3 className='center'>Your Would You Rather Questions</h3>
-        <ul className='dashboard-list'>
-          <p className='title-unanswered'>Unanswered Questions:</p>
-          {questionsId.map((id) => (
-            !this.hasAnsweredQuestion(id) &&
-              (<li key={id} className='unanswered-question'>
-                <Question id={id} />
-              </li>)            
-              )  
-          )}
 
-          <p className='title-answered'>Answered Questions:</p>
-          {questionsId.map((id) => (
-            this.hasAnsweredQuestion(id) &&
-            (<li key={id} className='answered-question'>
-                <Question id={id} />
-              </li>)            
-              )  
-          )}
+        <Tabs>
+          <TabList>
+            <Tab>Unanswered Questions</Tab>
+            <Tab>Answered Questions</Tab>
+          </TabList>
 
-        </ul>
+          <TabPanel>
+            <ul className='dashboard-list'>
+              {questionsId.map((id) => (
+                !this.hasAnsweredQuestion(id) &&
+                  (<li key={id} className='unanswered-question'>
+                    <Question id={id} />
+                  </li>)            
+                  )  
+              )}
+            </ul>
+          </TabPanel>
+          <TabPanel>
+            <ul className='dashboard-list'>
+              {questionsId.map((id) => (
+                this.hasAnsweredQuestion(id) &&
+                (<li key={id} className='answered-question'>
+                    <Question id={id} />
+                  </li>)            
+                  )  
+              )}
+            </ul>
+          </TabPanel>
+        </Tabs>
       </div>
     )
   }

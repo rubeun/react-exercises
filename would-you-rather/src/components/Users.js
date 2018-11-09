@@ -3,19 +3,15 @@ import { connect } from 'react-redux';
 import { logoutUser } from '../actions/shared';
 
 class Users extends Component {
-
-  handleLogout = () => {
-    this.props.dispatch(logoutUser());
-  }
   
   render() {
-    const { authedUser, users } = this.props;
+    const { authedUser, users, handleLogout } = this.props;
 
     if (authedUser !== null) {
       return (
         <div className='current-user'>
           <p className='current-username'>{authedUser} is logged in</p>
-          <p className='log-out' onClick={this.handleLogout}>Log Out</p>
+          <p className='log-out' onClick={handleLogout}>Log Out</p>
           <img className='avatar' src={users[authedUser].avatarURL} alt={authedUser} />
         </div>
       )
@@ -36,4 +32,14 @@ function mapStateToProps({authedUser, users}) {
   }
 }
 
-export default connect(mapStateToProps)(Users);
+// handle user clicking logout button
+function mapDispatchToProps(dispatch) {
+  return {
+    handleLogout: () => dispatch(logoutUser())
+  };
+}
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Users);

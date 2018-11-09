@@ -3,9 +3,6 @@ import { connect } from 'react-redux';
 import { loginUser } from '../actions/shared';
 
 class Login extends Component {
-  state ={
-    usernames: ''
-  }
 
   handleUser = (username) => {
     const selectedUser = username;

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { FiCheckCircle } from 'react-icons/fi';
+import { TiTick } from 'react-icons/ti';
 import { calculatePercentage } from '../utils/helpers';
 import { handleSaveAnswer } from '../actions/questions';
 import { formatDate } from '../utils/helpers';
@@ -30,7 +30,7 @@ class QuestionPage extends Component {
     e.preventDefault();
     const { dispatch, id } = this.props;
 
-    const answer = document.querySelector('input[name="question"]:checked').value;
+    const answer = e.target.elements.question.value;
 
     dispatch(handleSaveAnswer(id, answer));
 
@@ -59,9 +59,9 @@ class QuestionPage extends Component {
         <div>
           <h3 className='center'>Would You Rather</h3>
           <div className='answered-question'>          
-            <p>{optionOne.text} {this.hasVoted() === 'optionOne' ? <FiCheckCircle  color='green' /> : '' } {optionOneVotes} votes ({optionOnePercentage}%)</p>
+            <p>{optionOne.text} {this.hasVoted() === 'optionOne' ? <TiTick size='1.5em' color='green' /> : '' } {optionOneVotes} votes ({optionOnePercentage}%)</p>
             <p>or</p>
-            <p>{optionTwo.text} {this.hasVoted() === 'optionTwo' ? <FiCheckCircle  color='green' /> : '' } {optionTwoVotes} votes ({optionTwoPercentage}%)</p>
+            <p>{optionTwo.text} {this.hasVoted() === 'optionTwo' ? <TiTick size='1.5em' color='green' /> : '' } {optionTwoVotes} votes ({optionTwoPercentage}%)</p>
             <p><img className='avatar' src={users[question.author].avatarURL} alt={question.author} /></p>
             <p className='author-time-date'>Created by {question.author} on {timeDate}</p>
             <br />
@@ -77,9 +77,16 @@ class QuestionPage extends Component {
           <h3 className='center'>Would You Rather</h3>
 
           <form className='unanswered-question' onSubmit={this.handleSubmit}>
-            <p>{optionOne.text} <input type='radio' name='question' value='optionOne' required /></p>
+            <label>
+              {optionOne.text}
+              <input type="radio" name="question" value="optionOne" required />
+            </label>
             <p>or</p>
-            <p>{optionTwo.text} <input type='radio' name='question' value='optionTwo' required /></p>
+            <label>
+              {optionTwo.text} 
+              <input type='radio' name='question' value='optionTwo' required />
+            </label>
+            <br />
             <button
               className='btn'
               type='submit'

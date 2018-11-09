@@ -12,19 +12,19 @@ class NewQuestion extends Component {
   }
 
   // handle state change when user types in textbox
-  handleChange1 = (e) => {
-    const optionOneText = e.target.value;
+  handleChange = (e) => {
 
-    this.setState(() => ({
-      optionOneText
-    }))
-  }
-  handleChange2 = (e) => {
-    const optionTwoText = e.target.value;
-
-    this.setState(() => ({
-      optionTwoText
-    }))
+    if (e.target.id === 'option-one-value') {
+      const optionOneText = e.target.value;
+      this.setState(() => ({
+        optionOneText
+      }))  
+    } else if (e.target.id === 'option-two-value') {
+      const optionTwoText = e.target.value;
+      this.setState(() => ({
+        optionTwoText
+      }))
+      }
   }
 
   // handle adding new question on submit, then clear text box.
@@ -56,17 +56,19 @@ class NewQuestion extends Component {
         <p className='center'>Would you rather...</p>
         <form className='new-question center' onSubmit={this.handleSubmit}>
           <textarea
+            id='option-one-value'
             placeholder="Option 1 ?"
             value={optionOneText}
-            onChange={this.handleChange1}
+            onChange={this.handleChange}
             className='textarea'
             maxLength={100}
             autoFocus
           /><br />
           <textarea
+            id='option-two-value'
             placeholder="Option 2 ?"
             value={optionTwoText}
-            onChange={this.handleChange2}
+            onChange={this.handleChange}
             className='textarea'
             maxLength={100}
           /><br />
