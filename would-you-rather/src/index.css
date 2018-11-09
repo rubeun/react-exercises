@@ -167,6 +167,14 @@ li {
   margin: 0 auto;
 }
 
+.leaderboard-list li {
+  margin: 0 auto;
+  list-style: decimal;
+  border: 1px dotted #000;
+  background-color: rgb(147, 208, 236);
+  width: 70%;
+}
+
 .avatar {
   height: 50px;
   border-radius: 25px;
