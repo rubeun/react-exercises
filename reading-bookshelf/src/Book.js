@@ -12,18 +12,36 @@ class Book extends Component {
 
   // consolidate authors into a single string separated by commas
   displayAuthors = (authors) => {
-    return authors.join(',');
+    if (authors !== undefined) {
+      return authors.join(',');
+    } else {
+      return 'unknown author';
+    }
+  }
+
+  // check if there is a valid thumbnail, if not show book cover unavailable image
+  displayThumbnail = (imageLinks) => {
+    if (imageLinks !== undefined) {
+      if (imageLinks.thumbnail !== undefined) {
+        return imageLinks.thumbnail;
+      } else {
+        return imageLinks.smallThumbnail;
+      }
+    } else {
+      return 'http://i.imgur.com/sJ3CT4V.gif';
+    }
   }
 
   render() {
     const { title, imageLinks, authors, shelf } = this.props.book;
     const authorsText = this.displayAuthors(authors);
-    const imageThumbnail = imageLinks.thumbnail;
+    const imageThumbnail = this.displayThumbnail(imageLinks);
     const imageStyle = {
       width: 128, 
       height: 193, 
       backgroundImage: 'url(' + imageThumbnail + ')',
     }
+    const currentShelf = shelf !== undefined ? shelf : 'none';
 
     return (
       <li>
@@ -31,7 +49,7 @@ class Book extends Component {
           <div className="book-top">
             <div className="book-cover" style={imageStyle}></div>
             <div className="book-shelf-changer">
-              <select value={shelf}  onChange={this.handleMoveBookToShelf}>
+              <select value={currentShelf}  onChange={this.handleMoveBookToShelf}>
                 <option value="move" disabled>Move to...</option>
                 <option value="currentlyReading">Currently Reading</option>
                 <option value="wantToRead">Want to Read</option>
