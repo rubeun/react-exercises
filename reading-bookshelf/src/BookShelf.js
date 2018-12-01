@@ -12,7 +12,7 @@ class BookShelf extends Component {
     return (
       <div className="list-books">
         <div className="list-books-title">
-          <h1>MyReads</h1>
+          <h1 className="pulsate">Rubeun's Reading BookShelf</h1>
         </div>
 
 
