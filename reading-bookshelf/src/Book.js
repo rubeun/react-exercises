@@ -28,7 +28,7 @@ class Book extends Component {
         return imageLinks.smallThumbnail;
       }
     } else {
-      return 'http://i.imgur.com/sJ3CT4V.gif';
+      return 'http://www.scottishbooktrust.com/files/styles/book-cover-book-page/public/cover-not-available_215.png';
     }
   }
 
@@ -39,6 +39,7 @@ class Book extends Component {
     const imageStyle = {
       width: 128, 
       height: 193, 
+      backgroundRepeat: "round",
       backgroundImage: 'url(' + imageThumbnail + ')',
     }
     const currentShelf = shelf !== undefined ? shelf : 'none';

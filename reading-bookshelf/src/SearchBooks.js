@@ -10,6 +10,7 @@ class SearchBooks extends Component {
     searchResults: []
   }
 
+  // handle search call to API when user inputs text, search results stored in local state
   bookSearch = (e) => {
     if (e.target.value !== '') {
       BooksAPI.search(e.target.value)
@@ -19,7 +20,6 @@ class SearchBooks extends Component {
           }))
         })
     } else {
-      console.log("Empty Search");
       this.setState(() => ({
         searchResults: []
       }))
@@ -38,7 +38,7 @@ class SearchBooks extends Component {
       <div className="search-books-bar">
         <Link className="close-search" to="/">Close</Link>
         <div className="search-books-input-wrapper">
-          <input type="text" placeholder="Search by title or author" onChange={this.bookSearch} />
+          <input type="text" placeholder="Search by title or author" onChange={this.bookSearch} autoFocus />
         </div>
       </div>
       <div className="search-books-results">
