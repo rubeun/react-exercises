@@ -28,17 +28,21 @@ class BooksApp extends Component {
       });
   }
 
-  // move book with bookID to shelf with shelfID, then refresh state
-  moveBookToShelf = (bookID, shelfID) => {
-    console.log("moveBookToShelf: " + bookID + " to " + shelfID);
-    BooksAPI.update(bookID, shelfID)
+  bookSearch = (searchText) => {
+    BooksAPI.search(searchText)
+      .then(searchResults => searchResults)
+  }
+
+  // move book to shelf with shelfID, then refresh state
+  moveBookToShelf = (bookToMove, shelfID) => {
+    BooksAPI.update(bookToMove, shelfID)
       .then(() => {
 
         // update state
         const { allBooks } = this.state;
 
         allBooks.map((book, index) => {
-          if (bookID === book.id) {
+          if (bookToMove.id === book.id) {
             // copy allBooks, edit copy and reset state to the copy
             const newBooks = this.state.allBooks;
             newBooks[index].shelf = shelfID;
@@ -48,7 +52,8 @@ class BooksApp extends Component {
             });
           }
           return 0;             
-        })
+        });
+        this.getAllBooks();
       });
   }
 
@@ -63,7 +68,7 @@ class BooksApp extends Component {
       <Router>
         <div className="container">
           <Route path='/' exact render={() => (<BookShelf allBooks={allBooks} moveBookToShelf={this.moveBookToShelf} />)}  />
-          <Route path='/search' exact component={SearchBooks} />        
+          <Route path='/search' exact render={() => (<SearchBooks bookSearch={this.bookSearch} />)} />        
         </div>
       </Router>
     )  

@@ -7,7 +7,7 @@ class Book extends Component {
   handleMoveBookToShelf = (e) => {
     const { book, moveBookToShelf } = this.props;
     console.log("Move " + book.id + " to " + e.target.value);
-    moveBookToShelf(book.id, e.target.value);    
+    moveBookToShelf(book, e.target.value);    
   }
 
   // consolidate authors into a single string separated by commas
