@@ -13,7 +13,6 @@ class Shelf extends Component {
       wantToRead: 'Want To Read',
       read: 'Read'
     }
-    console.log(typeof moveBookToShelf);
   
     return (
       <div className="bookshelf">

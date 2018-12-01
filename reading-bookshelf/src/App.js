@@ -14,9 +14,9 @@ class BooksApp extends Component {
   getAllBooks = () => {
     BooksAPI.getAll()
       .then((allBooks) => {
-        this.setState({
+        this.setState(() => ({
           allBooks
-        });
+        }));
       });
   }
 
@@ -33,10 +33,23 @@ class BooksApp extends Component {
     console.log("moveBookToShelf: " + bookID + " to " + shelfID);
     BooksAPI.update(bookID, shelfID)
       .then(() => {
-        this.getAllBooks();
-        this.forceUpdate();
-      });
 
+        // update state
+        const { allBooks } = this.state;
+
+        allBooks.map((book, index) => {
+          if (bookID === book.id) {
+            // copy allBooks, edit copy and reset state to the copy
+            const newBooks = this.state.allBooks;
+            newBooks[index].shelf = shelfID;
+            
+            this.setState({
+              allBooks: newBooks
+            });
+          }
+          return 0;             
+        })
+      });
   }
 
   componentDidMount() {
@@ -45,7 +58,7 @@ class BooksApp extends Component {
 
   render() {
     const { allBooks } = this.state;
-    //console.log(allBooks);
+    console.log(allBooks);
     return (
       <Router>
         <div className="container">
