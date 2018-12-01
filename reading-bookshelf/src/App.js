@@ -30,9 +30,11 @@ class BooksApp extends Component {
 
   // move book with bookID to shelf with shelfID, then refresh state
   moveBookToShelf = (bookID, shelfID) => {
+    console.log("moveBookToShelf: " + bookID + " to " + shelfID);
     BooksAPI.update(bookID, shelfID)
       .then(() => {
         this.getAllBooks();
+        this.forceUpdate();
       });
 
   }

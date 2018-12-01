@@ -8,7 +8,7 @@ class BookShelf extends Component {
 
   render() {
     const { allBooks, moveBookToShelf } = this.props;
-    console.log(allBooks);
+
     return (
       <div className="list-books">
         <div className="list-books-title">
@@ -20,9 +20,9 @@ class BookShelf extends Component {
           ? (
             <div className="list-books-content">
               <div>
-                <Shelf shelfID="currentlyReading" allBooks={allBooks} />
-                <Shelf shelfID="wantToRead" allBooks={allBooks} />
-                <Shelf shelfID="read" allBooks={allBooks} />
+                <Shelf shelfID="currentlyReading" allBooks={allBooks} moveBookToShelf={moveBookToShelf} />
+                <Shelf shelfID="wantToRead" allBooks={allBooks} moveBookToShelf={moveBookToShelf} />
+                <Shelf shelfID="read" allBooks={allBooks} moveBookToShelf={moveBookToShelf} />
               </div>
             </div>
           )

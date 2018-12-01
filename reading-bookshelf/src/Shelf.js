@@ -13,6 +13,7 @@ class Shelf extends Component {
       wantToRead: 'Want To Read',
       read: 'Read'
     }
+    console.log(typeof moveBookToShelf);
   
     return (
       <div className="bookshelf">
@@ -22,7 +23,7 @@ class Shelf extends Component {
             {allBooks.map((book) => (
               book.shelf === shelfID &&
                 (
-                  <li key={book.id}>{book.title}</li>
+                  <Book key={book.id} book={book} moveBookToShelf={moveBookToShelf} />
                 )            
             ))}                
           </ol>
