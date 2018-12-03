@@ -15,7 +15,8 @@ class SearchBooks extends Component {
   // search BooksAPI for user input and updates in this state.
   bookSearch = (e) => {
     // check if search field is empty
-    if (e.target.value !== '') {
+    console.log("Target value", typeof e.target.value)
+    if ((e.target.value) || (e.target.value !== '')) {
       BooksAPI.search(e.target.value)
         .then((searchResults) => {
           // search results found
