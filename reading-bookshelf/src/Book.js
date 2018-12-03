@@ -3,17 +3,25 @@ import PropTypes from 'prop-types';
 
 class Book extends Component {
 
+  state = {
+    currentShelfSelection: "none"
+  }
+
   // handles user choosing to move the book to another shelf
   handleMoveBookToShelf = (e) => {
     const { book, moveBookToShelf } = this.props;
-    console.log("Move " + book.id + " to " + e.target.value);
-    moveBookToShelf(book, e.target.value);    
+    console.log("Move " + book.title + " to " + e.target.value);
+    this.setState({
+      currentShelfSelection: e.target.value
+    });  
+    moveBookToShelf(book, e.target.value); 
+    this.forceUpdate(); 
   }
 
   // consolidate authors into a single string separated by commas
   displayAuthors = (authors) => {
     if (authors !== undefined) {
-      return authors.join(',');
+      return authors.join(', ');
     } else {
       return 'unknown author';
     }
@@ -28,12 +36,32 @@ class Book extends Component {
         return imageLinks.smallThumbnail;
       }
     } else {
+      // cover not available
       return 'http://www.scottishbooktrust.com/files/styles/book-cover-book-page/public/cover-not-available_215.png';
     }
   }
 
+  // needed to update current shelf of search results that don't have that info 
+  componentWillReceiveProps(props) {
+    setTimeout(() => {    // ###### HACK ######  
+      this.setState({
+        currentShelfSelection: props.book.shelf
+      });        
+    }, 1000);
+  }
+
+  componentDidMount() {
+    const { currentShelf } = this.props;
+    console.log("Component Mounted - currentSelf:", currentShelf);
+    this.setState({
+      currentShelfSelection: currentShelf
+    });
+  }
+
   render() {
-    const { title, imageLinks, authors, shelf } = this.props.book;
+    const { book } = this.props;
+    const { currentShelfSelection } = this.state;
+    const { title, imageLinks, authors } = book;
     const authorsText = this.displayAuthors(authors);
     const imageThumbnail = this.displayThumbnail(imageLinks);
     const imageStyle = {
@@ -42,7 +70,6 @@ class Book extends Component {
       backgroundRepeat: "round",
       backgroundImage: 'url(' + imageThumbnail + ')',
     }
-    const currentShelf = shelf !== undefined ? shelf : 'none';
 
     return (
       <li>
@@ -50,7 +77,7 @@ class Book extends Component {
           <div className="book-top">
             <div className="book-cover" style={imageStyle}></div>
             <div className="book-shelf-changer">
-              <select value={currentShelf}  onChange={this.handleMoveBookToShelf}>
+              <select value={currentShelfSelection}  onChange={this.handleMoveBookToShelf}>
                 <option value="move" disabled>Move to...</option>
                 <option value="currentlyReading">Currently Reading</option>
                 <option value="wantToRead">Want to Read</option>
@@ -70,6 +97,7 @@ class Book extends Component {
 Book.propTypes = {
   book: PropTypes.object,
   moveBookToShelf: PropTypes.func,
+  currentShelf: PropTypes.string,
 };
 
 export default Book;

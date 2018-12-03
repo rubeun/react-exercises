@@ -22,7 +22,7 @@ class Shelf extends Component {
             {allBooks.map((book) => (
               book.shelf === shelfID &&
                 (
-                  <Book key={book.id} book={book} moveBookToShelf={moveBookToShelf} />
+                  <Book key={book.id} book={book} moveBookToShelf={moveBookToShelf} currentShelf={book.shelf} />
                 )            
             ))}                
           </ol>
