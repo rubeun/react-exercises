@@ -1,4 +1,4 @@
-# react-exercises
+# React Exercises/Projects
 React Exercises from various projects/courses
 
 
