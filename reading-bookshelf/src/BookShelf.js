@@ -7,7 +7,7 @@ import Shelf from './Shelf';
 class BookShelf extends Component {
 
   render() {
-    const { allBooks, moveBookToShelf } = this.props;
+    const { allUsersBooks, moveBookToShelf } = this.props;
 
     return (
       <div className="list-books">
@@ -16,13 +16,13 @@ class BookShelf extends Component {
         </div>
 
 
-        {allBooks.length > 0
+        {allUsersBooks.length > 0
           ? (
             <div className="list-books-content">
               <div>
-                <Shelf shelfID="currentlyReading" allBooks={allBooks} moveBookToShelf={moveBookToShelf} />
-                <Shelf shelfID="wantToRead" allBooks={allBooks} moveBookToShelf={moveBookToShelf} />
-                <Shelf shelfID="read" allBooks={allBooks} moveBookToShelf={moveBookToShelf} />
+                <Shelf shelfID="currentlyReading" allUsersBooks={allUsersBooks} moveBookToShelf={moveBookToShelf} />
+                <Shelf shelfID="wantToRead" allUsersBooks={allUsersBooks} moveBookToShelf={moveBookToShelf} />
+                <Shelf shelfID="read" allUsersBooks={allUsersBooks} moveBookToShelf={moveBookToShelf} />
               </div>
             </div>
           )
@@ -44,7 +44,7 @@ class BookShelf extends Component {
 }
 
 BookShelf.propTypes = {
-  allBooks: PropTypes.array,
+  allUsersBooks: PropTypes.array,
   moveBookToShelf: PropTypes.func,
 };
 

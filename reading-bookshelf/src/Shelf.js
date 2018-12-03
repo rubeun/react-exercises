@@ -7,7 +7,7 @@ class Shelf extends Component {
 
 
   render() {
-    const { shelfID, allBooks, moveBookToShelf } = this.props;
+    const { shelfID, allUsersBooks, moveBookToShelf } = this.props;
     const shelfTitles = {
       currentlyReading: 'Currently Reading',
       wantToRead: 'Want To Read',
@@ -19,7 +19,7 @@ class Shelf extends Component {
         <h2 className="bookshelf-title">{shelfTitles[shelfID]}</h2>
         <div className="bookshelf-books">
           <ol className="books-grid">
-            {allBooks.map((book) => (
+            {allUsersBooks.map((book) => (
               book.shelf === shelfID &&
                 (
                   <Book key={book.id} book={book} moveBookToShelf={moveBookToShelf} currentShelf={book.shelf} />
@@ -35,7 +35,7 @@ class Shelf extends Component {
 
 Shelf.propTypes = {
   shelfID: PropTypes.string,
-  allBooks: PropTypes.array,
+  allUsersBooks: PropTypes.array,
   moveBookToShelf: PropTypes.func,
 };
 

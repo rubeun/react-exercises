@@ -41,20 +41,9 @@ class Book extends Component {
     }
   }
 
-  // needed to update current shelf of search results that don't have that info 
-  componentWillReceiveProps(props) {
-    console.log("Props Updated: ", props.book.shelf);
-    if (props.book.shelf) {
-      this.setState({
-        currentShelfSelection: props.book.shelf
-      });          
-    }
-  }
-
   // check current shelf when book is called and update its local state
   componentDidMount() {
     const { currentShelf } = this.props;
-    console.log("Component Mounted - currentSelf:", currentShelf);
     if (currentShelf !== "undefined") {
       this.setState({
         currentShelfSelection: currentShelf

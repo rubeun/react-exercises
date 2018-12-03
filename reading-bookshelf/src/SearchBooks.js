@@ -46,17 +46,24 @@ class SearchBooks extends Component {
 
   // update search results to add its current shelf to the book info
   addCurrentShelf = (searchResults) => {
-    const { currentShelf } = this.props;
+    const { allUsersBooks } = this.props;
 
     // adding corresponding shelf to each individual book in the results
     searchResults.map((book) => {
-      const addShelf = new Promise((resolve) => {
-        resolve(currentShelf(book.id)); // use function from parent that handles allBooks
-      });
 
-      addShelf.then((shelfAdded) => {
-        book.shelf = shelfAdded;
-      });
+      // search through allUsersBooks to see if shelf is set
+      allUsersBooks.map((userBook) => {
+        if (userBook.id === book.id) {
+          book.shelf = userBook.shelf;
+        }
+        return 0;
+      })
+
+      // if shelf is not set, set it to none
+      if (book.shelf === 'undefined') {
+        book.shelf = 'none';
+      }
+
       return book;
     });
     return searchResults;
@@ -92,7 +99,7 @@ class SearchBooks extends Component {
 
 SearchBooks.propTypes = {
   moveBookToShelf: PropTypes.func,
-  currentShelf: PropTypes.func,
+  allUsersBooks: PropTypes.array
 };
 
 export default SearchBooks;
